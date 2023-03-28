@@ -15,7 +15,7 @@ const Team = () => {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate('/newOrder');
+    navigate('/addOrder');
   }
   const columns = [
     { field: 'id', headerName: 'ID' },

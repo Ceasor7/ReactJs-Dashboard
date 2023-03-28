@@ -167,7 +167,7 @@ const Sidebar = () => {
             />
             <Item
               title="Tickets"
-              to="/coupons"
+              to="/tickets"
               icon={<ConfirmationNumberOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -191,7 +191,7 @@ const Sidebar = () => {
 
             <Item
               title="Subscriptions"
-              to="/contacts"
+              to="/subscribers"
               icon={<SubscriptionsIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -206,7 +206,7 @@ const Sidebar = () => {
             </Typography>
             <Item
               title="Coupons"
-              to="/form"
+              to="/coupons"
               icon={<DiscountOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -234,28 +234,28 @@ const Sidebar = () => {
             />
             <Item
               title="Order forms"
-              to="/form"
+              to="/newOrder"
               icon={<FilterFramesIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Modules"
-              to="/form"
+              to="/modules"
               icon={<ViewModuleIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Integration"
-              to="/form"
+              to="/intergrations"
               icon={<WindowIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Setting"
-              to="/form"
+              to="/settings"
               icon={<SettingsOutlined />}
               selected={selected}
               setSelected={setSelected}

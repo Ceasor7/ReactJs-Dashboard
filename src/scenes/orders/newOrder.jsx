@@ -1,39 +1,78 @@
-import React from 'react';
-import { Box, TextField, Button } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import Header from '../../components/Header';
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import { useNavigate } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
-const StyledBox = styled(Box)({
-  display: 'flex',
-  width: '70%',
-  flexDirection: 'column',
-  alignItems: 'center',
-  '& > :not(style)': {
-    m: 16,
-    width: '100ch',
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    padding: theme.spacing(2),
   },
-});
+  table: {
+    minWidth: 650,
+  },
+  addButton: {
+    marginBottom: theme.spacing(2),
+  },
+}));
 
-const StyledButton = styled(Button)({
-  marginTop: '10px',
-  width: '70vh',
-  height: 'inherit',
-  borderRadius: '5px',
-  padding: '5px',
-  margin: '8px',
-});
+function OrderForm() {
+  const classes = useStyles();
+  const navigate = useNavigate();
+  const [orders] = useState([
+    { id: 1, customer: 'John Doe', item: 'Product A', quantity: 2 },
+    { id: 2, customer: 'Jane Smith', item: 'Product B', quantity: 1 },
+    { id: 3, customer: 'Bob Johnson', item: 'Product C', quantity: 3 },
+  ]);
 
-function UserDetailsForm() {
+  const handleAddOrder = () => {
+    navigate('/addOrder');
+  };
+
   return (
-    <StyledBox component="form">
-      <Header title="ADD ORDERS" subtitle="Add Orders from Here" />
-      <TextField id="outlined-basic" label="First Name" variant="outlined" />
-      <TextField id="outlined-basic" label="Last Name" variant="outlined" />
-      <TextField id="outlined-basic" label="Email Address" variant="outlined" />
-      <TextField id="outlined-basic" label="Phone Number" variant="outlined" />
-      <StyledButton variant="contained">Submit</StyledButton>
-    </StyledBox>
+    <div className={classes.root}>
+      <Button
+        onClick={handleAddOrder}
+        variant="contained"
+        color="primary"
+        className={classes.addButton}
+      >
+        Add Order
+      </Button>
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="Orders">
+          <TableHead>
+            <TableRow>
+              <TableCell>ID</TableCell>
+              <TableCell align="center">Customer</TableCell>
+              <TableCell align="center">Item</TableCell>
+              <TableCell align="center">Quantity</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {orders.map((order) => (
+              <TableRow key={order.id}>
+                <TableCell component="th" scope="row">
+                  {order.id}
+                </TableCell>
+                <TableCell align="center">{order.customer}</TableCell>
+                <TableCell align="center">{order.item}</TableCell>
+                <TableCell align="center">{order.quantity}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
   );
 }
 
-export default UserDetailsForm;
+export default OrderForm;
